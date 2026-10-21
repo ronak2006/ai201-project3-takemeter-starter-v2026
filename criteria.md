@@ -51,61 +51,33 @@ whether you hit them:
 
 ---
 
-## 1.
+## 1. Overall accuracy is at least 0.70 on the held-out set, across all three seeds.
 
-<!-- Your criterion. It must name a number. -->
-
-
-
-**Why this target:**
-
-
+**Why this target:** A random guesser across three balanced labels gets about 0.33. A model that reaches 0.70 is roughly twice as useful as chance, which feels like the floor for something worth using. Because my labels are roughly equal in count (~70 each), accuracy isn't distorted by one dominant class, so 0.70 is a fair read.
 
 ---
 
-## 2.
+## 2. Macro F1 is at least 0.65 on the held-out set, across all three seeds.
 
-<!-- Your criterion. -->
-
-
-
-**Why this target:**
-
-
+**Why this target:** Macro F1 averages across all three labels equally, so a model can't hide a weak label behind two strong ones. 0.65 is slightly below the accuracy target because F1 penalises precision and recall mismatches that accuracy ignores. If the model learns to recognise one label by aggressively over-predicting it, macro F1 will catch that where accuracy might not.
 
 ---
 
-## 3.
+## 3. Every individual label has an F1 of at least 0.55 on the held-out set, across all three seeds.
 
-<!-- Your criterion. -->
-
-
-
-**Why this target:**
-
-
+**Why this target:** With ~70 examples per label and a 15% test split, each label lands in the test set about 10–11 times. F1 on that few posts swings a lot between seeds, so I'm setting 0.55 rather than the 0.65 macro target. The hardest boundary in this taxonomy is `analysis` vs `hot_take` — a post can cite a number but still be a `hot_take` if the fact isn't doing the argumentative work — so I expect at least one label to underperform and 0.55 gives it room to still count as working.
 
 ---
 
-## 4.
+## 4. No single label exceeds 40% of the total dataset.
 
-<!-- Your criterion. -->
-
-
-
-**Why this target:**
-
-
+**Why this target:** With three labels a perfectly even split would be 33% each. I'm allowing up to 40% because collecting in the wild means some post types are more common, but beyond 40% the model starts learning to guess the majority label and the minority labels' F1 scores become unreliable. My current counts are close to 70 each so this should hold, but I'm stating it explicitly as a check before training.
 
 ---
 
-## 5.
+## 5. Agreement with the staff set is at least 70% on the 30 shared posts.
 
-<!-- Your criterion. -->
-
-
-
-**Why this target:**
+**Why this target:** The staff taxonomy uses the same three labels as mine, which makes it a genuine consistency check rather than just a label-mapping exercise. 70% is the rate the brief describes as normal and expected for posts chosen because they're genuinely ambiguous. Hitting at least 70% means my decision rules are tight enough to agree with a second annotator most of the time; falling below it would suggest I applied my own rules inconsistently across my 200 posts.
 
 
 
