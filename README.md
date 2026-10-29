@@ -272,24 +272,29 @@ No disagreements means either the rules are tight enough to produce consistent a
 
 ## The Improvement
 
-**What I changed:**
+**What I changed:** Increased training epochs from 3 to 5. Everything else (learning rate, batch size, data, labels) unchanged.
 
-**Which diagnosis pointed at it:**
+**Which diagnosis pointed at it:** The before run showed `analysis` F1 dropping to 0.900 at seed 2024, the lowest single value across all labels and seeds. The diagnosis identified the `analysis`/`hot_take` boundary as the hardest to learn and noted seed 2024 drew a harder split. More training passes was the most direct way to give the model more time on that boundary without changing the data.
 
 ### Run Log — After
 
+Device: Apple Silicon GPU (MPS) · torch 2.14.1 · 5 epochs
+
 | Criterion | Target | Seed 42 | Seed 7 | Seed 2024 | Verdict |
 |---|---|---|---|---|---|
-| 1.  |  |  |  |  |  |
-| 2.  |  |  |  |  |  |
-| 3.  |  |  |  |  |  |
-| 4.  |  |  |  |  |  |
-| 5.  |  |  |  |  |  |
+| 1. Overall accuracy | ≥ 0.70 | 0.969 | 0.938 | 0.969 | MET |
+| 2. Macro F1 | ≥ 0.65 | 0.971 | 0.939 | 0.971 | MET |
+| 3. Every label F1 | ≥ 0.55 | 0.952 / 0.960 / 1.000 | 0.952 / 0.917 / 0.947 | 0.952 / 0.960 / 1.000 | MET |
+| 4. No label > 40% of dataset | ≤ 40% share | 37.0% / 34.1% / 28.8% | same | same | MET |
+| 5. Agreement with staff | ≥ 70% | 100% | — | — | MET |
 
 **Did it help, and how do I know:**
 
-<!-- If it didn't, say so. Relabelling that didn't help is a genuinely
-     interesting result and earns full credit. -->
+Mixed result. The specific weakness the improvement targeted — `analysis` F1 at seed 2024 — improved from 0.900 to 0.952, and `analysis` F1 is now identical across all three seeds (0.952/0.952/0.952, spread 0.000). That part worked.
+
+But seed 7 regressed: `hot_take` fell from 0.960 to 0.917 and `reaction` fell from 1.000 to 0.947. The accuracy for seed 7 dropped from 0.969 to 0.938. The extra epochs over-fitted the seed 7 split on some boundary the 3-epoch run had got right. The before run had a lower floor but a higher ceiling at seed 7; the after run is more consistent on `analysis` but less consistent overall.
+
+All five criteria are still met in both runs. The improvement is real but narrow — it fixed one label's floor at the cost of introducing a regression elsewhere. The honest conclusion is that 3 epochs was close to optimal for this dataset size and the 5-epoch run traded one weakness for another.
 
 
 
@@ -297,15 +302,13 @@ No disagreements means either the rules are tight enough to produce consistent a
 
 ## What's Still Broken
 
-<!-- For each criterion still missed: what you'd do, and why you stopped. -->
+No criterion was missed in either the before or after run, so there is nothing left broken in terms of the five targets.
 
+The one remaining weakness is seed-to-seed variance on the `analysis`/`hot_take` boundary. The before run had a floor of 0.900 for `analysis`; the after run raised that floor but introduced a `hot_take` floor of 0.917 at seed 7. Neither is below the 0.55 target, but both show the boundary is still the hardest for the model. To fix it properly — rather than just trading one floor for another — I would add more training examples that sit squarely on the boundary: posts that cite a statistic but where the statistic is decorative rather than load-bearing. The model would benefit from more signal on exactly that case. I stopped because adding data was not permitted in this unit.
 
+**The gap between what I meant my labels to capture and what the model learned:**
 
-**The gap between what I meant my labels to capture and what the model
-learned:**
-<!-- Two sentences. Your confusion matrix is the evidence. -->
-
-
+My label definitions distinguished `analysis` from `hot_take` by whether a fact carries the argument or merely decorates it — a distinction that requires reading the structure of a claim, not just detecting the presence of a number. The confusion matrix (seed 42) shows the model got this nearly right: only 1 post crossed the boundary in either direction. But the `analysis` F1 variability across seeds (0.957→0.952→0.900 before; 0.952 flat after) tells me the model is learning a coarser signal — probably something like "does this post contain a number" — rather than the load-bearing-fact rule, because a coarser rule would fluctuate more with which specific posts land in the test split.
 
 <!-- ═════════════════════════════════════════════════════════════════════
 
