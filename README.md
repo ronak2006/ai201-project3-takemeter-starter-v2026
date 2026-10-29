@@ -186,29 +186,28 @@ Fine-tuning added a great deal: +0.375 accuracy and +0.442 macro F1. The most st
 <!-- Five criteria across three seeds. The notebook's section 6 prints the
      spread table; the Target and Verdict columns are yours. -->
 
+Device: Apple Silicon GPU (MPS) · torch 2.14.1
+
 | Criterion | Target | Seed 42 | Seed 7 | Seed 2024 | Verdict |
 |---|---|---|---|---|---|
-| 1.  |  |  |  |  |  |
-| 2.  |  |  |  |  |  |
-| 3.  |  |  |  |  |  |
-| 4.  |  |  |  |  |  |
-| 5.  |  |  |  |  |  |
+| 1. Overall accuracy | ≥ 0.70 | 0.969 | 0.969 | 0.938 | MET |
+| 2. Macro F1 | ≥ 0.65 | 0.971 | 0.971 | 0.941 | MET |
+| 3. Every label F1 | ≥ 0.55 | 0.957 / 0.957 / 1.000 | 0.952 / 0.960 / 1.000 | 0.900 / 0.923 / 1.000 | MET |
+| 4. No label > 40% of dataset | ≤ 40% share | 37.0% / 34.1% / 28.8% | same | same | MET |
+| 5. Agreement with staff | ≥ 70% | — | — | — | pending |
 
 ### Confusion matrix
 
-<!-- ⚠️ TYPED AS A MARKDOWN TABLE. The notebook prints one ready to paste.
-     An image of a matrix earns nothing. -->
+<!-- seed 42 -->
 
-| true \ predicted |  |  |  |
+| true \ predicted | analysis | hot_take | reaction |
 |---|---|---|---|
-| **** |  |  |  |
-| **** |  |  |  |
-| **** |  |  |  |
+| **analysis** | 11 | 0 | 0 |
+| **hot_take** | 1 | 11 | 0 |
+| **reaction** | 0 | 0 | 9 |
 
 **My biggest off-diagonal number, and what it means:**
-<!-- Not "the model made mistakes" — WHICH boundary it didn't learn, and which
-     direction. "7 real analysis posts were called hot_take and only 3 went the
-     other way" is a direction, not just an error rate. -->
+1 real `hot_take` post was called `analysis` — and zero went the other way. The matrix is nearly diagonal: the model has learned the `analysis`/`hot_take` boundary well enough that only one post crossed it, and `reaction` was classified perfectly across all three seeds.
 
 
 
