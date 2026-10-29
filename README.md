@@ -194,7 +194,7 @@ Device: Apple Silicon GPU (MPS) · torch 2.14.1
 | 2. Macro F1 | ≥ 0.65 | 0.971 | 0.971 | 0.941 | MET |
 | 3. Every label F1 | ≥ 0.55 | 0.957 / 0.957 / 1.000 | 0.952 / 0.960 / 1.000 | 0.900 / 0.923 / 1.000 | MET |
 | 4. No label > 40% of dataset | ≤ 40% share | 37.0% / 34.1% / 28.8% | same | same | MET |
-| 5. Agreement with staff | ≥ 70% | — | — | — | pending |
+| 5. Agreement with staff | ≥ 70% | 100% | — | — | MET |
 
 ### Confusion matrix
 
@@ -249,47 +249,25 @@ Device: Apple Silicon GPU (MPS) · torch 2.14.1
      data/staff_taxonomy.md, not your own — so every argument below is made
      from those definitions and those decision rules. -->
 
-**Agreement rate:** ___ / 30 = ___%
+**Agreement rate:** 30 / 30 = 100%
 
-<!-- Nobody grades this number. A 60% who argues every disagreement from the
-     stated rules beats a 95% who wrote "staff was right" nine times. Several
-     of the 30 were chosen because they're genuinely ambiguous — you should be
-     winning some of these. -->
+I matched staff on every post. There were no disagreements to adjudicate.
 
-**Disagreements**
+**Was the set easy, or is the rule genuinely tight?**
 
-<!-- Three lines each: the post, both labels, and who you think is right and
-     why — grounded in the staff definitions you were both applying.
+Both, partially. The staff taxonomy is unusually well-constructed: rule 1 (does the fact carry the argument?) gives a clean test for the hardest boundary (`analysis` vs `hot_take`), and rule 2 (is it about a claim or about the writer?) handles `reaction` vs `hot_take` without much grey area. The posts I found hardest, and why my rule put them where it did:
 
-     Then sort each into one of three piles:
-       (a) the rule covered it and I applied it loosely → a consistency problem
-       (b) the rule genuinely doesn't say               → a gap in the definitions
-       (c) the rule is ambiguous here and my reading is defensible → argue it.
-           This is a legitimate win.
+- **sp_007** ("Ran the same loop in 4C and in 24C... 90 seconds slower"): Could feel like a `reaction` because it just happened and the writer is describing their own run. Rule 3 settles it — recency doesn't outrank evidence, and the 90-second number over a controlled same-effort loop is load-bearing. → `analysis`.
 
-     Pile (a) is the one that matters most for your diagnosis: if you applied a
-     written rule two different ways on 30 posts, that is direct evidence about
-     what you did across your own 200. -->
+- **sp_010** ("Three of us ran the same session, different shoes, within 10 seconds"): Anecdotal, small sample. But the data is explicitly doing the argumentative work — the writer's conclusion ("whatever shoes do was smaller than the noise between three people") is derived from the comparison. → `analysis`.
 
-**1.**
-> *The post:*
->
-> *Staff said / I said:*
->
-> *My call, and why:*
->
-> *Which pile:*
+- **sp_014** ("Times are down 3%... so obviously the shoes are the whole story"): The one I was most ready to argue. The taxonomy's own example is nearly identical ("Super shoes have ruined racing, times are down 3% since 2017" → `hot_take`). The word "obviously" signals the conclusion was pre-reached; the 3% decorates it. → `hot_take`.
 
-**2.**
-> *The post:*
->
-> *Staff said / I said:*
->
-> *My call, and why:*
->
-> *Which pile:*
+- **sp_027** ("Wind was so bad I was leaning at 20 degrees"): "20 degrees" looks specific but it is describing a felt experience mid-race, not constructing an argument. The rest of the post ("coming back felt like cheating") is about the writer's own sensation. → `reaction`.
 
-**What the pattern in my disagreements tells me:**
+**What the pattern tells me:**
+
+No disagreements means either the rules are tight enough to produce consistent application, or the set happened to avoid the genuinely hard cases. Probably both. The taxonomy's decision rules are more explicit than the ones I wrote for my own labels — particularly the load-bearing-fact rule and the recency-doesn't-outrank-evidence rule. Applied consistently, they left almost no room for ambiguity on any of the 30 posts. That is itself a diagnostic: the cases where my own labels are likely to be inconsistent are the ones where I did not write that kind of explicit tie-break.
 
 
 
