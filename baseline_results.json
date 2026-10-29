@@ -1,0 +1,194 @@
+{
+  "model": "facebook/bart-large-mnli",
+  "n": 32,
+  "seed": 42,
+  "held_out": true,
+  "used_definitions": true,
+  "scores": {
+    "n": 32,
+    "accuracy": 0.59375,
+    "f1_macro": 0.5292929292929293,
+    "per_label": {
+      "analysis": {
+        "precision": 0.8888888888888888,
+        "recall": 0.7272727272727273,
+        "f1": 0.7999999999999999,
+        "support": 11
+      },
+      "hot_take": {
+        "precision": 0.47619047619047616,
+        "recall": 0.8333333333333334,
+        "f1": 0.6060606060606061,
+        "support": 12
+      },
+      "reaction": {
+        "precision": 0.5,
+        "recall": 0.1111111111111111,
+        "f1": 0.1818181818181818,
+        "support": 9
+      }
+    }
+  },
+  "predictions": [
+    {
+      "text": "WAIT THEY FINALLY DROPPED THE TRAILER FOR GTA 6?! MY JAW IS ON THE FLOOR RIGHT NOW.",
+      "gold": "reaction",
+      "predicted": "hot_take"
+    },
+    {
+      "text": "My cat crawled under the duvet and curled up purring against my feet. I am legally not allowed to move now.",
+      "gold": "reaction",
+      "predicted": "hot_take"
+    },
+    {
+      "text": "A four-year liberal arts degree has devolved into the most overpriced vanity subscription on earth.",
+      "gold": "hot_take",
+      "predicted": "hot_take"
+    },
+    {
+      "text": "Hotel check-in at 4 PM and checkout at 11 AM is practically a scam that robs guests of half their stay.",
+      "gold": "hot_take",
+      "predicted": "hot_take"
+    },
+    {
+      "text": "The Apollo 11 guidance computer operated on just 4 kilobytes of RAM and a 72-kilobyte ROM clocking at 1.024 MHz.",
+      "gold": "analysis",
+      "predicted": "hot_take"
+    },
+    {
+      "text": "The US interstate highway system received initial construction funding of $25 billion authorized under the Federal-Aid Highway Act of 1956.",
+      "gold": "analysis",
+      "predicted": "analysis"
+    },
+    {
+      "text": "Audiobooks are a fantastic alternative to reading, and purists who claim it 'doesn't count' are elitist snobs.",
+      "gold": "hot_take",
+      "predicted": "hot_take"
+    },
+    {
+      "text": "Sunday evening dread just hit me like a runaway freight train at 7 PM sharp.",
+      "gold": "reaction",
+      "predicted": "reaction"
+    },
+    {
+      "text": "Global sea levels rose by an average of 3.4 millimeters annually between 1993 and 2023 according to NASA satellite altimetry data.",
+      "gold": "analysis",
+      "predicted": "analysis"
+    },
+    {
+      "text": "Roman concrete in the Pantheon utilizes reactive quicklime inclusions that produce self-healing calcite when cracks admit moisture.",
+      "gold": "analysis",
+      "predicted": "hot_take"
+    },
+    {
+      "text": "Hitting the snooze button is the single most destructive habit a working adult can indulge each morning.",
+      "gold": "hot_take",
+      "predicted": "hot_take"
+    },
+    {
+      "text": "Contemporary bedroom pop is far more sonically adventurous than classic rock ever was in the 1970s.",
+      "gold": "hot_take",
+      "predicted": "hot_take"
+    },
+    {
+      "text": "Self-checkout lanes are corporate labor displacement masquerading as customer convenience.",
+      "gold": "hot_take",
+      "predicted": "hot_take"
+    },
+    {
+      "text": "Reaching into a dusty winter jacket and pulling out a crisp twenty-dollar bill made my entire weekend.",
+      "gold": "reaction",
+      "predicted": "hot_take"
+    },
+    {
+      "text": "Sequoia Capital's 2009 seed investment of $585,000 into Airbnb was completed at a pre-money valuation of roughly $2.5 million.",
+      "gold": "analysis",
+      "predicted": "analysis"
+    },
+    {
+      "text": "Apple's iPhone App Store commissions remained locked at 30% from 2008 until antitrust scrutiny triggered the Small Business Program in 2021.",
+      "gold": "analysis",
+      "predicted": "analysis"
+    },
+    {
+      "text": "The human brain utilizes 20% of resting metabolic glucose despite comprising only 2% of total human body mass.",
+      "gold": "analysis",
+      "predicted": "analysis"
+    },
+    {
+      "text": "Standard keyboard QWERTY layout was patented by Christopher Sholes in 1878 specifically to prevent physical typewriter typebars from jamming.",
+      "gold": "analysis",
+      "predicted": "hot_take"
+    },
+    {
+      "text": "Password expiration policies every 90 days actually weaken digital security by forcing predictable variations.",
+      "gold": "hot_take",
+      "predicted": "hot_take"
+    },
+    {
+      "text": "Tesla's operating margin fell from 16.0% in 2022 to 8.2% in 2023, showing that aggressive EV price cuts directly eroded profitability.",
+      "gold": "analysis",
+      "predicted": "analysis"
+    },
+    {
+      "text": "The 2022 Formula 1 aero regulations slashed trailing aerodynamic wake loss from 50% down to 18% at four car lengths.",
+      "gold": "analysis",
+      "predicted": "analysis"
+    },
+    {
+      "text": "Buying gym supplements is 90% placebo effect for gym-goers who simply don't get enough sleep.",
+      "gold": "hot_take",
+      "predicted": "reaction"
+    },
+    {
+      "text": "Autumn is vastly superior to summer in temperature, wardrobe, food, and general outdoor comfort.",
+      "gold": "hot_take",
+      "predicted": "analysis"
+    },
+    {
+      "text": "I spent three hours cooking a complicated beef bourguignon and it turned out completely bland and rubbery.",
+      "gold": "reaction",
+      "predicted": "hot_take"
+    },
+    {
+      "text": "Unlacing my hiking boots after fourteen miles over rugged mountain terrain is absolute heaven.",
+      "gold": "reaction",
+      "predicted": "hot_take"
+    },
+    {
+      "text": "The comforting smell of fresh rainfall hitting dry summer pavement just washed away all my workday stress.",
+      "gold": "reaction",
+      "predicted": "hot_take"
+    },
+    {
+      "text": "Super Bowl advertisements haven't produced an iconic or memorable joke since the early Obama presidency.",
+      "gold": "hot_take",
+      "predicted": "hot_take"
+    },
+    {
+      "text": "Cold brew coffee tastes exclusively like muddy water and people drink it purely to look busy.",
+      "gold": "hot_take",
+      "predicted": "hot_take"
+    },
+    {
+      "text": "Casual Fridays in corporate offices are patronizing gestures that should be replaced with real compensation.",
+      "gold": "hot_take",
+      "predicted": "hot_take"
+    },
+    {
+      "text": "Getting the notification that my tax refund landed directly into my bank account is the sweetest feeling.",
+      "gold": "reaction",
+      "predicted": "hot_take"
+    },
+    {
+      "text": "The human skin sheds roughly 30,000 to 40,000 dead epidermal cells every single minute, shedding roughly 8 pounds of tissue per year.",
+      "gold": "analysis",
+      "predicted": "analysis"
+    },
+    {
+      "text": "Waking up in a panic thinking I slept through my alarm only to realize it's Saturday is the greatest feeling ever.",
+      "gold": "reaction",
+      "predicted": "hot_take"
+    }
+  ]
+}

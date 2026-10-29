@@ -165,18 +165,17 @@ This classifier sorts posts from r/unpopularopinion into three categories: `anal
 
 | Measure | Baseline | Trained | Difference |
 |---|---|---|---|
-| Overall accuracy |  |  |  |
-| Macro F1 |  |  |  |
-| F1 — `label_one` |  |  |  |
-| F1 — `label_two` |  |  |  |
+| Overall accuracy | 0.594 | 0.969 | +0.375 |
+| Macro F1 | 0.529 | 0.971 | +0.442 |
+| F1 — `analysis` | 0.800 | 0.957 | +0.157 |
+| F1 — `hot_take` | 0.606 | 0.957 | +0.350 |
+| F1 — `reaction` | 0.182 | 1.000 | +0.818 |
 
 **What I predicted before I looked:**
-<!-- Milestone 1 asks you to write this BEFORE seeing the trained numbers. A
-     prediction made afterwards isn't one. -->
+The trained model should beat the baseline on overall accuracy (≥0.70 trained vs likely 0.50–0.60 baseline) and especially on the `analysis`/`hot_take` boundary, since that distinction requires understanding argumentative structure — something fine-tuning should encode better than zero-shot prompting from bare definitions.
 
 **What the gap actually means:**
-<!-- If the baseline matched your trained model, your fine-tuning added
-     nothing — and that is a real finding, not a failure. Say it plainly. -->
+Fine-tuning added a great deal: +0.375 accuracy and +0.442 macro F1. The most striking finding is `reaction`: the zero-shot model almost completely failed on it (F1 0.182) despite a clear definition, while the fine-tuned model got every reaction post right (F1 1.000). This suggests the written definition alone ("an immediate response to something that just happened") is not enough to reliably distinguish reaction posts — the model needed examples of what that actually looks like in practice. The prediction about `analysis`/`hot_take` was also correct: fine-tuning added +0.350 on `hot_take`, the label that depends on the load-bearing-fact rule that is hard to operationalise from words alone.
 
 
 
