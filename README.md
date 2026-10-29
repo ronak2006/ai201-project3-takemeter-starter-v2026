@@ -220,22 +220,19 @@ Device: Apple Silicon GPU (MPS) · torch 2.14.1
 
 | # | Criterion | Target | Verdict | How I decided |
 |---|---|---|---|---|
-| 1 |  |  |  |  |
-| 2 |  |  |  |  |
-| 3 |  |  |  |  |
-| 4 |  |  |  |  |
-| 5 |  |  |  |  |
+| 1 | Overall accuracy | ≥ 0.70 across all three seeds | MET | Seeds: 0.969 / 0.969 / 0.938. Lowest is 0.938 — well above 0.70. |
+| 2 | Macro F1 | ≥ 0.65 across all three seeds | MET | Seeds: 0.971 / 0.971 / 0.941. Lowest is 0.941 — well above 0.65. |
+| 3 | Every label F1 | ≥ 0.55 per label per seed | MET | Lowest single value across all labels and seeds: `analysis` at seed 2024 = 0.900. All 9 values (3 labels × 3 seeds) are above 0.55. |
+| 4 | No label > 40% of dataset | ≤ 40% share | MET | hot_take 37.0%, analysis 34.1%, reaction 28.8%. Dataset property doesn't change with seed. |
+| 5 | Agreement with staff | ≥ 70% | MET | 30/30 = 100%. |
 
 **Diagnoses**
 
-<!-- For each miss: the cause, and how you know. The four common causes are:
-     too few examples for a label, a boundary you applied inconsistently, a
-     genuinely hard label pair, and a task the model can't reach from this
-     much data.
+No criteria were missed, so there are no misses to diagnose. What the results reveal instead:
 
-     ⚠️ Use your agreement report as evidence. It is the only instrument you
-     have that can tell a LABELLING problem from a MODEL problem, and this
-     section is graded on whether you used it that way. -->
+**Why the model performed so well:** The three labels are behaviourally distinct enough that even 200 examples and 3 epochs produced near-ceiling accuracy. `reaction` was classified perfectly across all three seeds (F1 1.000), which was the most surprising result — the zero-shot baseline got `reaction` almost entirely wrong (F1 0.182), showing the model genuinely learned something the definition alone couldn't convey. `analysis` at seed 2024 (F1 0.900) was the weakest individual number, which matches expectation: the `analysis`/`hot_take` boundary is the hardest in the taxonomy and seed 2024 drew a slightly harder split.
+
+**What the agreement report says about labelling consistency:** 100% agreement with staff on 30 posts, including the four I identified as genuinely hard (sp_007, sp_010, sp_014, sp_027), suggests my load-bearing-fact rule was applied consistently on posts where I had a written decision rule. The agreement report cannot confirm this for the 200 posts in my own dataset, because there is no second annotator for those — but the absence of disagreements on boundary cases in the staff set is the closest evidence available that my labelling was not systematically inconsistent on the `analysis`/`hot_take` pair.
 
 
 
